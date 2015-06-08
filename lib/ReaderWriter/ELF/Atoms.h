@@ -42,7 +42,8 @@ public:
   ELFReference(const Elf_Rela *rela, uint64_t off, Reference::KindArch arch,
                Reference::KindValue relocType, uint32_t idx)
       : Reference(Reference::KindNamespace::ELF, arch, relocType),
-        _targetSymbolIndex(idx), _offsetInAtom(off), _addend(rela->r_addend) {}
+        _targetSymbolIndex(idx), _offsetInAtom(off), _addend(rela->r_addend),
+        _offsetInSection(rela->r_offset) {}
 
   ELFReference(uint64_t off, Reference::KindArch arch,
                Reference::KindValue relocType, uint32_t idx)
@@ -64,9 +65,13 @@ public:
 
   Addend addend() const override { return _addend; }
 
+  uint64_t offsetInSection() const { return _offsetInSection; }
+
   virtual void setOffset(uint64_t off) { _offsetInAtom = off; }
 
   void setAddend(Addend A) override { _addend = A; }
+
+  void setOffsetInSection(uint64_t off) { _offsetInSection = off; }
 
   void setTarget(const Atom *newAtom) override { _target = newAtom; }
 
@@ -75,6 +80,7 @@ private:
   uint64_t _targetSymbolIndex = 0;
   uint64_t _offsetInAtom = 0;
   Addend _addend = 0;
+  uint64_t _offsetInSection = 0;
 };
 
 /// \brief These atoms store symbols that are fixed to a particular address.
