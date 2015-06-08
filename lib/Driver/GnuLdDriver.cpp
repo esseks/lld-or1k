@@ -361,6 +361,7 @@ GnuLdDriver::createELFLinkingContext(llvm::Triple triple) {
   if ((p = elf::createExampleLinkingContext(triple))) return p;
   if ((p = elf::createHexagonLinkingContext(triple))) return p;
   if ((p = elf::createMipsLinkingContext(triple))) return p;
+  if ((p = elf::createOR1KLinkingContext(triple))) return p;
   if ((p = elf::createX86LinkingContext(triple))) return p;
   if ((p = elf::createX86_64LinkingContext(triple))) return p;
   return nullptr;
