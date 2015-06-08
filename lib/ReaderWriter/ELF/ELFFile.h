@@ -498,6 +498,8 @@ template <class ELFT> Reference::KindArch ELFFile<ELFT>::kindArch() {
     return Reference::KindArch::Hexagon;
   case llvm::ELF::EM_MIPS:
     return Reference::KindArch::Mips;
+  case llvm::ELF::EM_OPENRISC:
+    return Reference::KindArch::OR1K;
   case llvm::ELF::EM_AARCH64:
     return Reference::KindArch::AArch64;
   }
