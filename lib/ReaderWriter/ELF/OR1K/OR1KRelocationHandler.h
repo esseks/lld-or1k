@@ -12,7 +12,6 @@
 
 #include "lld/ReaderWriter/ELFLinkingContext.h"
 
-
 namespace lld {
 namespace elf {
 
@@ -22,7 +21,8 @@ class OR1KLinkingContext;
 
 template <class ELFTy>
 std::unique_ptr<TargetRelocationHandler>
-createOR1KRelocationHandler(OR1KLinkingContext &ctx, OR1KTargetLayout<ELFTy> &layout);
+createOR1KRelocationHandler(OR1KLinkingContext &ctx,
+                            OR1KTargetLayout<ELFTy> &layout);
 
 } // namespace elf
 } // namespace lld

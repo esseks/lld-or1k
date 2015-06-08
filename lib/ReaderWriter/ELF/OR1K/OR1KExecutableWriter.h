@@ -13,15 +13,14 @@
 #include "ExecutableWriter.h"
 #include "OR1KLinkingContext.h"
 
-
 namespace lld {
 namespace elf {
 
 template <class ELFTy>
-class OR1KExecutableWriter: public ExecutableWriter<ELFTy> {
+class OR1KExecutableWriter : public ExecutableWriter<ELFTy> {
 public:
-    OR1KExecutableWriter(OR1KLinkingContext &ctx, TargetLayout<ELFTy> &layout):
-        ExecutableWriter<ELFTy>(ctx, layout) {}
+  OR1KExecutableWriter(OR1KLinkingContext &ctx, TargetLayout<ELFTy> &layout)
+      : ExecutableWriter<ELFTy>(ctx, layout) {}
 };
 
 } // namespace elf

@@ -14,28 +14,27 @@
 #include "llvm/Object/ELF.h"
 #include "llvm/Support/ELF.h"
 
-
 namespace lld {
 namespace elf {
 
 class OR1KLinkingContext final : public ELFLinkingContext {
 public:
-    static const int machine = llvm::ELF::EM_OPENRISC;
+  static const int machine = llvm::ELF::EM_OPENRISC;
 
-    OR1KLinkingContext(llvm::Triple);
+  OR1KLinkingContext(llvm::Triple);
 
-    void registerRelocationNames(Registry &r) override;
-    void addPasses(PassManager &) override;
+  void registerRelocationNames(Registry &r) override;
+  void addPasses(PassManager &) override;
 
-    bool isRelativeReloc(const Reference &r) const override;
-    bool isCopyRelocation(const Reference &r) const override;
-    bool isPLTRelocation(const Reference &r) const override;
+  bool isRelativeReloc(const Reference &r) const override;
+  bool isCopyRelocation(const Reference &r) const override;
+  bool isPLTRelocation(const Reference &r) const override;
 
-    StringRef getDefaultInterpreter() const override {
-        return "/usr/lib/ld.so.1";
-    }
+  StringRef getDefaultInterpreter() const override {
+    return "/usr/lib/ld.so.1";
+  }
 
-    StringRef entrySymbolName() const override;
+  StringRef entrySymbolName() const override;
 };
 
 } // end namespace elf

@@ -13,24 +13,25 @@
 #include "DynamicLibraryWriter.h"
 #include "OR1KLinkingContext.h"
 
-
 namespace lld {
 namespace elf {
 
 template <typename ELFTy>
-class OR1KDynamicLibraryWriter: public DynamicLibraryWriter<ELFTy> {
+class OR1KDynamicLibraryWriter : public DynamicLibraryWriter<ELFTy> {
 public:
-    OR1KDynamicLibraryWriter(OR1KLinkingContext &ctx, TargetLayout<ELFTy> &layout):
-        DynamicLibraryWriter<ELFTy>(ctx, layout) {}
+  OR1KDynamicLibraryWriter(OR1KLinkingContext &ctx, TargetLayout<ELFTy> &layout)
+      : DynamicLibraryWriter<ELFTy>(ctx, layout) {}
 
 protected:
-    void createImplicitFiles(std::vector<std::unique_ptr<File>> &result) override {
-        DynamicLibraryWriter<ELFTy>::createImplicitFiles(result);
-        auto gotFile = llvm::make_unique<lld::SimpleFile>("GOTFile");
-        gotFile->addAtom(*new (gotFile->allocator()) GlobalOffsetTableAtom(*gotFile));
-        gotFile->addAtom(*new (gotFile->allocator()) DynamicAtom(*gotFile));
-        result.push_back(std::move(gotFile));
-    }
+  void
+  createImplicitFiles(std::vector<std::unique_ptr<File>> &result) override {
+    DynamicLibraryWriter<ELFTy>::createImplicitFiles(result);
+    auto gotFile = llvm::make_unique<lld::SimpleFile>("GOTFile");
+    gotFile->addAtom(*new (gotFile->allocator())
+                         GlobalOffsetTableAtom(*gotFile));
+    gotFile->addAtom(*new (gotFile->allocator()) DynamicAtom(*gotFile));
+    result.push_back(std::move(gotFile));
+  }
 };
 
 } // namespace elf
