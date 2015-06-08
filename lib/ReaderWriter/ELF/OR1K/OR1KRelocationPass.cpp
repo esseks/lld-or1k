@@ -213,10 +213,6 @@ void RelocationPass<Derived>::perform(
  * Based on the relocation type, it will invoke an appropriate handler.
  */
 template <typename Derived>
-    case llvm::ELF::R_OR1K_RELATIVE:
-        llvm_unreachable("TODO add support for RELATIVE");
-        break;
-
 void RelocationPass<Derived>::handleReference(const lld::DefinedAtom &atom,
                                               const lld::Reference &ref) {
   if (ref.kindNamespace() != lld::Reference::KindNamespace::ELF)
@@ -249,6 +245,13 @@ void RelocationPass<Derived>::handleReference(const lld::DefinedAtom &atom,
 
   case llvm::ELF::R_OR1K_PLT26:
     static_cast<Derived *>(this)->handlePLT(ref);
+    break;
+
+  case llvm::ELF::R_OR1K_RELATIVE:
+  case llvm::ELF::R_OR1K_COPY:
+  case llvm::ELF::R_OR1K_GLOB_DAT:
+  case llvm::ELF::R_OR1K_JMP_SLOT:
+    // Load time relocations, nothing to do here
     break;
 
   default:
