@@ -1,0 +1,12 @@
+add_llvm_library(lldOR1KELFTarget
+  OR1KLinkingContext.cpp
+  OR1KRelocationHandler.cpp
+  OR1KRelocationPass.cpp
+  OR1KTargetHandler.cpp
+  LINK_LIBS
+    lldELF
+    lldReaderWriter
+    lldCore
+    LLVMObject
+    LLVMSupport
+  )

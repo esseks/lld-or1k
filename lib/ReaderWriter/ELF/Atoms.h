@@ -678,6 +678,11 @@ public:
     addReferenceELF(Reference::KindArch::Mips, relocType, off, t, a);
   }
 
+  void addReferenceELF_OR1K(Reference::KindValue relocType, uint64_t off,
+                            const Atom *t, Reference::Addend a) {
+    addReferenceELF(Reference::KindArch::OR1K, relocType, off, t, a);
+  }
+
   void addReferenceELF_AArch64(Reference::KindValue relocType, uint64_t off,
                                const Atom *t, Reference::Addend a) {
     addReferenceELF(Reference::KindArch::AArch64, relocType, off, t, a);

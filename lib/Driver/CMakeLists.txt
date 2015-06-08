@@ -27,6 +27,7 @@ add_llvm_library(lldDriver
     lldARMELFTarget
     lldHexagonELFTarget
     lldMipsELFTarget
+    lldOR1KELFTarget
     lldX86ELFTarget
     lldExampleSubTarget
     lldX86_64ELFTarget

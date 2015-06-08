@@ -43,6 +43,7 @@ std::unique_ptr<ELFLinkingContext> createARMLinkingContext(llvm::Triple);
 std::unique_ptr<ELFLinkingContext> createExampleLinkingContext(llvm::Triple);
 std::unique_ptr<ELFLinkingContext> createHexagonLinkingContext(llvm::Triple);
 std::unique_ptr<ELFLinkingContext> createMipsLinkingContext(llvm::Triple);
+std::unique_ptr<ELFLinkingContext> createOR1KLinkingContext(llvm::Triple);
 std::unique_ptr<ELFLinkingContext> createX86LinkingContext(llvm::Triple);
 std::unique_ptr<ELFLinkingContext> createX86_64LinkingContext(llvm::Triple);
 
