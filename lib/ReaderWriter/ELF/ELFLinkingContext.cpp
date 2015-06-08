@@ -59,6 +59,9 @@ uint16_t ELFLinkingContext::getOutputMachine() const {
     return llvm::ELF::EM_AARCH64;
   case llvm::Triple::arm:
     return llvm::ELF::EM_ARM;
+  case llvm::Triple::or1k:
+  case llvm::Triple::or1kle:
+    return llvm::ELF::EM_OPENRISC;
   default:
     llvm_unreachable("Unhandled arch");
   }

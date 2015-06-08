@@ -207,6 +207,13 @@ getArchType(const llvm::Triple &triple, StringRef value) {
     if (value == "armelf_linux_eabi")
       return llvm::Triple::arm;
     return llvm::None;
+  case llvm::Triple::or1k:
+  case llvm::Triple::or1kle:
+    if (value == "elf32-or1k")
+        return llvm::Triple::or1k;
+    if (value == "elf32-or1kle")
+        return llvm::Triple::or1kle;
+    return llvm::None;
   default:
     return llvm::None;
   }
