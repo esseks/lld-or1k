@@ -536,14 +536,12 @@ void DynamicRelocationPass::handlePLT(lld::Reference const &ref) {
 
 lld::elf::PLTAtom *DynamicRelocationPass::createPLTAtom(lld::elf::GOTAtom *ga) {
   lld::elf::PLTAtom *pa = new (_file._alloc) OR1KPLTPICAtom(_file, ".plt");
-  pa->addReferenceELF_OR1K(llvm::ELF::R_OR1K_HI_16_IN_INSN, 0, ga, 0);
-  pa->addReferenceELF_OR1K(llvm::ELF::R_OR1K_LO_16_IN_INSN, 4, ga, 0);
+  pa->addReferenceELF_OR1K(llvm::ELF::R_OR1K_GOT16, 0, ga, 0);
+  pa->addReferenceELF_OR1K(llvm::ELF::R_OR1K_GOT16, 4, ga, 0);
   return pa;
 }
 
 lld::elf::PLT0Atom *DynamicRelocationPass::createPLT0Atom() {
   lld::elf::PLT0Atom *pa0 = new (_file._alloc) OR1KPLT0PICAtom(_file);
-  pa0->addReferenceELF_OR1K(llvm::ELF::R_OR1K_HI_16_IN_INSN, 0, _got0, 0);
-  pa0->addReferenceELF_OR1K(llvm::ELF::R_OR1K_LO_16_IN_INSN, 4, _got0, 0);
   return pa0;
 }
