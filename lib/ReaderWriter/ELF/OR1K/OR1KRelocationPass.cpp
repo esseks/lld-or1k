@@ -232,14 +232,14 @@ void RelocationPass<Derived>::handleReference(const lld::DefinedAtom &atom,
   case llvm::ELF::R_OR1K_32_PCREL:
   case llvm::ELF::R_OR1K_16_PCREL:
   case llvm::ELF::R_OR1K_8_PCREL:
+  case llvm::ELF::R_OR1K_GOTPC_HI16:
+  case llvm::ELF::R_OR1K_GOTPC_LO16:
+  case llvm::ELF::R_OR1K_GOTOFF_HI16:
+  case llvm::ELF::R_OR1K_GOTOFF_LO16:
     static_cast<Derived *>(this)->handlePlain(ref);
     break;
 
-  case llvm::ELF::R_OR1K_GOTPC_HI16:
-  case llvm::ELF::R_OR1K_GOTPC_LO16:
   case llvm::ELF::R_OR1K_GOT16:
-  case llvm::ELF::R_OR1K_GOTOFF_HI16:
-  case llvm::ELF::R_OR1K_GOTOFF_LO16:
     static_cast<Derived *>(this)->handleGOT(ref);
     break;
 
