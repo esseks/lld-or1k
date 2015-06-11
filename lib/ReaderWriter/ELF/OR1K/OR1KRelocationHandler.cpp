@@ -138,7 +138,7 @@ std::error_code OR1KRelocationHandler<ELFTy>::applyRelocation(
     break;
   case R_OR1K_GOTOFF_LO16:
     reloc
-        <ELFTy::TargetEndianness, uint32_t, 16, true, 0xffff0000, 0xffff>
+        <ELFTy::TargetEndianness, uint32_t, 0, true, 0xffff0000, 0xffff>
         (location, target, addend, _layout.getGOTSymAddr());
     break;
   case R_OR1K_GOT16:
