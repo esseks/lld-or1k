@@ -62,7 +62,7 @@ public:
 
   uint64_t getGOTSymAddr() {
     if (!_gotSymAtom.hasValue()) {
-      _gotSymAtom = this->findAbsoluteAtom("_GLOBAL_OFFSET_TABLE_");
+      _gotSymAtom = this->findAtomLayoutByName("_GLOBAL_OFFSET_TABLE_");
     }
 
     if (*_gotSymAtom)
@@ -72,7 +72,7 @@ public:
 
 private:
   llvm::BumpPtrAllocator _alloc;
-  llvm::Optional<AtomLayout *> _gotSymAtom;
+  llvm::Optional<const AtomLayout *> _gotSymAtom;
 };
 
 template <typename ELFTy> class OR1KTargetHandler final : public TargetHandler {
