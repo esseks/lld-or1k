@@ -520,9 +520,6 @@ void DynamicRelocationPass::handleGOT(lld::Reference const &ref) {
 }
 
 void DynamicRelocationPass::handlePLT(lld::Reference const &ref) {
-  const_cast<lld::Reference &>(ref)
-      .setKindValue(llvm::ELF::R_OR1K_32_PCREL); // FIXME
-
   lld::DefinedAtom const *atom =
       dyn_cast_or_null<const lld::DefinedAtom>(ref.target());
 

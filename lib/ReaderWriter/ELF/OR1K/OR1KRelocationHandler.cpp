@@ -101,6 +101,7 @@ std::error_code OR1KRelocationHandler<ELFTy>::applyRelocation(
         (location, target, addend);
     break;
   case R_OR1K_INSN_REL_26:
+  case R_OR1K_PLT26:
     reloc
         <ELFTy::TargetEndianness, uint32_t, 2, true, 0xfc000000, 0x3ffffff>
         (location, target, addend, relocation);
@@ -141,7 +142,6 @@ std::error_code OR1KRelocationHandler<ELFTy>::applyRelocation(
         (location, target, addend, _layout.getGOTSymAddr());
     break;
   case R_OR1K_GOT16: // TODO
-  case R_OR1K_PLT26:
   default:
     return make_unhandled_reloc_error();
   }
