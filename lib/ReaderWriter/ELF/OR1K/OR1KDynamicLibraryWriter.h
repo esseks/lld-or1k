@@ -16,6 +16,13 @@
 namespace lld {
 namespace elf {
 
+class OR1KGlobalOffsetTableAtom : public GlobalOffsetTableAtom {
+public:
+  OR1KGlobalOffsetTableAtom(const File &f) : GlobalOffsetTableAtom(f) {}
+
+  Alignment alignment() const override { return 4; }
+};
+
 template <typename ELFTy>
 class OR1KDynamicLibraryWriter : public DynamicLibraryWriter<ELFTy> {
 public:
@@ -28,7 +35,7 @@ protected:
     DynamicLibraryWriter<ELFTy>::createImplicitFiles(result);
     auto gotFile = llvm::make_unique<lld::SimpleFile>("GOTFile");
     gotFile->addAtom(*new (gotFile->allocator())
-                         GlobalOffsetTableAtom(*gotFile));
+                         OR1KGlobalOffsetTableAtom(*gotFile));
     gotFile->addAtom(*new (gotFile->allocator()) DynamicAtom(*gotFile));
     result.push_back(std::move(gotFile));
   }
